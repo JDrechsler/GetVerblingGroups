@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Get Verbling groups from their API</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+        <div id="app">
+
+            <h3 class="text-center">Get Verbling Groups from their API</h3>
+
+            <select v-model="selectedLang">
+                <option>EN</option>
+                <option>DE</option>
+                <option>FR</option>
+            </select>
+
+            <br></br>
+
+            <span>Selected: {{ selectedLang }}</span>
+
+            <br></br>
+
+            <button @click="getCurrentApi" type="button" class="btn btn-primary btn-block">
+                Fetch URL's
+            </button>
+
+            <p></p>
+
+            <h4 v-show="groups.length<1">No results.</h4>
+
+            <ul>
+                <li v-for="group in groups">
+                    <a v-bind:href="groups">{{group}}</a>
+                </li>
+            </ul>
+
+            <button v-show="groups.length>0" @click="openAllGroups(groups)" type="button" class="btn btn-primary btn-block">
+                Open all
+            </button>
+
+        </div>
+
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+        <script type="text/javascript" src="//cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script type="text/javascript" src="//unpkg.com/vue@2.1.10/dist/vue.js"></script>
+        <script type="text/javascript" src="client.js"></script>
+    </body>
+
+</html>
