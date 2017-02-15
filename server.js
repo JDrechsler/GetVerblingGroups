@@ -30,9 +30,9 @@ io.on('connection', function(socket) {
         request("https://www.verbling.com/api/groups", function(error, response, apiString) {
             if (!error && response.statusCode == 200) {
                 socket.emit('response-apiString', apiString)
+                console.log('Server hat Client Groups geschickt')
             }
         })
-        console.log('Server hat Client Groups geschickt')
     })
 
     //A client disconnects from the server

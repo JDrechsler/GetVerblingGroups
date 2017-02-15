@@ -13,8 +13,9 @@
     <body>
         <div id="app">
 
-            <h3 class="text-center">Get Verbling Groups from their API</h3>
+            <h3 class="text-center">Get Verbling groups from their API</h3>
 
+            Language:
             <select v-model="selectedLang">
                 <option>EN</option>
                 <option>DE</option>
@@ -23,27 +24,30 @@
 
             <br></br>
 
-            <span>Selected: {{ selectedLang }}</span>
+            <span>Selected language: {{ selectedLang }}</span>
 
             <br></br>
 
             <button @click="getCurrentApi" type="button" class="btn btn-primary btn-block">
-                Fetch URL's
+                Request URL's
             </button>
 
             <p></p>
 
-            <h4 v-show="groups.length<1">No results.</h4>
+            <div v-show="groups.length>0">
+                <ul>
+                    <li v-for="group in groups">
+                        <a v-bind:href="group.hangout_url">
+                        {{group.hangout_url}}</a> ({{group.google_participants.length}}/{{group.num_participants}})
+                    </li>
+                </ul>
 
-            <ul>
-                <li v-for="group in groups">
-                    <a v-bind:href="groups">{{group}}</a>
-                </li>
-            </ul>
+                <button @click="openAllGroups" type="button" class="btn btn-primary btn-block">
+                    Open all
+                </button>
+            </div>
 
-            <button v-show="groups.length>0" @click="openAllGroups(groups)" type="button" class="btn btn-primary btn-block">
-                Open all
-            </button>
+            <h4>{{status}}</h4>
 
         </div>
 
